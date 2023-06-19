@@ -55,6 +55,17 @@ func main() {
 
 	diff := client.GetKeyDiff(gitKeys, fsKeys)
 
+	if diff.IsEmpty() {
+		log.Infof("No update to apply")
+	} else {
+		log.Infof(
+			"Applying update: %d inserts, %d updates and %d deletions",
+			len(diff.Inserts),
+			len(diff.Updates),
+			len(diff.Deletions),
+		)	
+	}
+
 	applyErr := filesystem.ApplyDiffToDirectory(
 		conf.Filesystem.Path,
 		diff,

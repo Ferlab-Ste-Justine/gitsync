@@ -1,7 +1,7 @@
 filesystem:
   path: ./test
-  file_permission: 0770
-  directory_permission: 0770
+  files_permission: 770
+  directories_permission: 770
 git:
   repo: "git@github.com:Ferlab-Ste-Justine/ferlease-playground.git"
   ref: main
