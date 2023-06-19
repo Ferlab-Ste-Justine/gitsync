@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	"github.com/Ferlab-Ste-Justine/gitsync/cmd"
 	"github.com/Ferlab-Ste-Justine/gitsync/config"
 	"github.com/Ferlab-Ste-Justine/gitsync/filesystem"
 	"github.com/Ferlab-Ste-Justine/gitsync/git"
@@ -56,24 +57,32 @@ func main() {
 	diff := client.GetKeyDiff(gitKeys, fsKeys)
 
 	if diff.IsEmpty() {
-		log.Infof("No update to apply")
+		log.Infof("[main] No update to apply")
 	} else {
 		log.Infof(
-			"Applying update: %d inserts, %d updates and %d deletions",
+			"[main] Applying update: %d inserts, %d updates and %d deletions",
 			len(diff.Inserts),
 			len(diff.Updates),
 			len(diff.Deletions),
-		)	
-	}
+		)
 
-	applyErr := filesystem.ApplyDiffToDirectory(
-		conf.Filesystem.Path,
-		diff,
-		filesystem.ConvertFileMode(conf.Filesystem.FilesPermission),
-		filesystem.ConvertFileMode(conf.Filesystem.DirectoriesPermission),
-	)
-	if applyErr != nil {
-		log.Errorf(applyErr.Error())
-		os.Exit(1)
+		applyErr := filesystem.ApplyDiffToDirectory(
+			conf.Filesystem.Path,
+			diff,
+			filesystem.ConvertFileMode(conf.Filesystem.FilesPermission),
+			filesystem.ConvertFileMode(conf.Filesystem.DirectoriesPermission),
+		)
+		if applyErr != nil {
+			log.Errorf(applyErr.Error())
+			os.Exit(1)
+		}
+
+		if len(conf.NotificationCommand) > 0 {
+			cmdErr := cmd.ExecCommand(conf.NotificationCommand, conf.NotificationCommandRetries, log)
+			if cmdErr != nil {
+				log.Errorf(cmdErr.Error())
+				os.Exit(1)
+			}
+		}
 	}
 }
