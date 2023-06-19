@@ -1,3 +1,4 @@
 gitsync
 test-environment/gitsync
 test-environment/test/
+test-environment/dummy-notifications-receiver/dummy-notifications-receiver
