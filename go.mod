@@ -4,7 +4,8 @@ go 1.18
 
 require (
 	github.com/Ferlab-Ste-Justine/etcd-sdk v0.8.0
-	github.com/Ferlab-Ste-Justine/git-sdk v0.5.0
+	github.com/Ferlab-Ste-Justine/git-sdk v0.6.0
+	google.golang.org/grpc v1.51.0
 	gopkg.in/yaml.v2 v2.4.0
 )
 
@@ -40,7 +41,6 @@ require (
 	golang.org/x/sys v0.7.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/genproto v0.0.0-20210602131652-f16073e35f0c // indirect
-	google.golang.org/grpc v1.51.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )

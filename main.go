@@ -43,7 +43,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	gitKeys, gitKeysErr := store.GetKeyVals()
+	gitKeys, gitKeysErr := store.GetKeyVals(conf.Git.Path)
 	if gitKeysErr != nil {
 		log.Errorf(gitKeysErr.Error())
 		os.Exit(1)
