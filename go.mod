@@ -2,11 +2,9 @@ module github.com/Ferlab-Ste-Justine/gitsync
 
 go 1.18
 
-replace github.com/Ferlab-Ste-Justine/git-sdk => /home/eric/Projects/git-sdk
-
 require (
 	github.com/Ferlab-Ste-Justine/etcd-sdk v0.8.0
-	github.com/Ferlab-Ste-Justine/git-sdk v0.0.0-00010101000000-000000000000
+	github.com/Ferlab-Ste-Justine/git-sdk v0.5.0
 	gopkg.in/yaml.v2 v2.4.0
 )
 
