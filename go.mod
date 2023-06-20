@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/Ferlab-Ste-Justine/etcd-sdk v0.8.0
-	github.com/Ferlab-Ste-Justine/git-sdk v0.6.0
+	github.com/Ferlab-Ste-Justine/git-sdk v0.6.1
 	google.golang.org/grpc v1.51.0
 	gopkg.in/yaml.v2 v2.4.0
 )
