@@ -24,6 +24,7 @@ type ConfigFilesystem struct {
 type ConfigGitAuth struct {
 	SshKey   string `yaml:"ssh_key"`
 	KnownKey string `yaml:"known_key"`
+	User     string
 }
 
 type ConfigGit struct {

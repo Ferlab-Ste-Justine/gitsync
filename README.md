@@ -34,6 +34,7 @@ git:
   auth:
     ssh_key: Path to ssh to use to authentify against the git server
     known_key: Path of known host key file to use to authentify the git server
+    user: User to user to identify as with the git server. Can be left empty for many git providers, but some like Gitea require it.
   accepted_signatures: Path to a directory containing gpg public key files that should be used to authentify the signature of the top git commit to ensure it was commited by a trusted source.
 notification_command:
   - "Notification command and its arguments to run whenever there is an update"
