@@ -31,7 +31,7 @@ git:
   repo: Url of the repo to sync with
   ref: Git reference of the repo to sync with (usually a branch)
   path: Path in the repo to sync with. Can be empty to sync with the entire repo
-  auth:
+  auth: Ssh authentication with the git server. For an unauthenticated https clones, these keys can be omitted.
     ssh_key: Path to ssh to use to authentify against the git server
     known_key: Path of known host key file to use to authentify the git server
     user: User to user to identify as with the git server. Can be left empty for many git providers, but some like Gitea require it.

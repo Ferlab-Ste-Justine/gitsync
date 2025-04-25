@@ -41,9 +41,14 @@ func verifyRepoSignatures(repo *git.GitRepository, signaturesPath string) error 
 }
 
 func Clone(conf config.ConfigGit) (*git.MemoryStore, error) {
-	sshCreds, sshCredsErr := git.GetSshCredentials(conf.Auth.SshKey, conf.Auth.KnownKey, conf.Auth.User)
-	if sshCredsErr != nil {
-		return nil, sshCredsErr
+	var sshCreds *git.SshCredentials
+	var sshCredsErr error
+
+	if conf.Auth.SshKey != "" {
+		sshCreds, sshCredsErr = git.GetSshCredentials(conf.Auth.SshKey, conf.Auth.KnownKey, conf.Auth.User)
+		if sshCredsErr != nil {
+			return nil, sshCredsErr
+		}
 	}
 
 	repo, store, repErr := git.MemCloneGitRepo(conf.Repo, conf.Ref, 1, sshCreds)
