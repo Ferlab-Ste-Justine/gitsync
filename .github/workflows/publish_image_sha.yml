@@ -1,0 +1,33 @@
+name: Publish Images Using Commit Hash
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish_barebones:
+    name: Publish Barebones Image
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish Gitsync Image
+      uses: Ferlab-Ste-Justine/action-push-image@v2
+      with:
+        username: ${{ secrets.FERLAB_DOCKER_HUB_USER }}
+        password: ${{ secrets.FERLAB_DOCKER_HUB_TOKEN }}
+        image: ferlabcrsj/gitsync
+        tag_format: "{sha}-{timestamp}"
+  publish_debian:
+    name: Publish Debian Image
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish Gitsync Image
+      uses: Ferlab-Ste-Justine/action-push-image@v2
+      with:
+        username: ${{ secrets.FERLAB_DOCKER_HUB_USER }}
+        password: ${{ secrets.FERLAB_DOCKER_HUB_TOKEN }}
+        image: ferlabcrsj/gitsync
+        tag_format: "{sha}-{timestamp}-debian"
+        dockerfile: DockerfileDebian

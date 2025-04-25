@@ -1,0 +1,33 @@
+name: Publish Image Using Semver Tag
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  publish_barebones:
+    name: Publish Barebones Image
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish Gitsync Image
+      uses: Ferlab-Ste-Justine/action-push-image@v2
+      with:
+        username: ${{ secrets.FERLAB_DOCKER_HUB_USER }}
+        password: ${{ secrets.FERLAB_DOCKER_HUB_TOKEN }}
+        image: ferlabcrsj/gitsync
+        tag_format: "{semver}"
+  publish_debian:
+    name: Publish Debian Image
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish Gitsync Image
+      uses: Ferlab-Ste-Justine/action-push-image@v2
+      with:
+        username: ${{ secrets.FERLAB_DOCKER_HUB_USER }}
+        password: ${{ secrets.FERLAB_DOCKER_HUB_TOKEN }}
+        image: ferlabcrsj/gitsync
+        tag_format: "{semver}-debian"
+        dockerfile: DockerfileDebian
