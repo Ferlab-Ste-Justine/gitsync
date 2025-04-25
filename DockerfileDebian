@@ -14,4 +14,6 @@ FROM debian:bookworm-slim
 
 COPY --from=builder /opt/gitsync /usr/local/bin/gitsync
 
+RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates 
+
 ENTRYPOINT ["/usr/local/bin/gitsync"]
